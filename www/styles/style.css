@@ -1,0 +1,33 @@
+html, body {
+  height: 100%;
+}
+* {
+  color: black;
+}
+section {
+  padding: 10px;
+}
+.header {
+  background-color: white;;
+  height: 100px;
+}
+.header h1 {
+  float: left;
+  display: inline-block;
+}
+.header .nav {
+  float: left;
+  padding:20px
+}
+.content {
+  background-color: white;
+  height: calc(100% - 100px);
+}
+.leftpane {
+  background-color: white;
+  height: 100%;
+}
+.rightpane {
+  background-color: white;
+  height: 100%;
+}

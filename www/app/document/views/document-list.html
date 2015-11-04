@@ -1,0 +1,23 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Document List</div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="document in documents">
+        <th scope="row">{{document.id}}</th>
+        <td>{{document.name}}</td>
+        <td>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-primary" ng-click="openDocument(document.id)">Open</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
