@@ -8,7 +8,8 @@ section {
   padding: 10px;
 }
 .header {
-  background-color: white;;
+  background-color: white;
+  ;
   height: 100px;
 }
 .header h1 {
@@ -17,7 +18,7 @@ section {
 }
 .header .nav {
   float: left;
-  padding:20px
+  padding: 20px
 }
 .content {
   background-color: white;
@@ -26,8 +27,13 @@ section {
 .leftpane {
   background-color: white;
   height: 100%;
+  overflow-y: auto;
 }
 .rightpane {
-  background-color: white;
+  background-color: #f3f3f3;
+  height: 100%;
+  text-align: center;
+}
+.document-viewer {
   height: 100%;
 }

@@ -10,26 +10,26 @@
 </head>
 
 <body ng-controller="MainController">
-  <div class="container-fluid">
-    <section class="header row">
-      <h1>Header
-        <span ng-bind="stuff"></span>
-      </h1>
-      <div ui-view="menu">
-      </div>
-    </section>
-    <section class="content row">
-      <section class="leftpane col-md-6">
-        <h2>Left Pane</h2>
-        <div ui-view="left-pane-content">
+  <div ui-view="">
+    <div class="container-fluid">
+      <section class="header row">
+        <h1>Header
+          <span ng-bind="stuff"></span>
+        </h1>
+        <div ui-view="menu@">
         </div>
       </section>
-      <section class="rightpane col-md-6">
-        <h2>Right Pane</h2>
-        <div ui-view="right-pane-content">
+      <section class="content row">
+        <section class="leftpane col-md-6">
+          <div ui-view="left-pane-content@">
+          </div>
+        </section>
+        <section class="rightpane col-md-6">
+          <div ui-view="right-pane-content@">
+        </section>
       </section>
-    </section>
-  </div>
+      </div>
+    </div>
 </body>
 
 </html>

@@ -14,7 +14,7 @@
         <td>{{document.name}}</td>
         <td>
           <div class="btn-group" role="group">
-            <button type="button" class="btn btn-primary" ng-click="openDocument(document.id)">Open</button>
+            <a class="btn btn-primary" ui-sref="documents.detail({ documentid: document.id })">Open</a>
           </div>
         </td>
       </tr>
