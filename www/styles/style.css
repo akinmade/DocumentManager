@@ -4,9 +4,7 @@ html, body {
 * {
   color: black;
 }
-section {
-  padding: 10px;
-}
+section {}
 .header {
   background-color: white;
   ;
@@ -32,8 +30,9 @@ section {
 .rightpane {
   background-color: #f3f3f3;
   height: 100%;
-  text-align: center;
+  
+  padding: 10px;
 }
 .document-viewer {
-  height: 100%;
+
 }

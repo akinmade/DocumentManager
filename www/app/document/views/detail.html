@@ -1,1 +1,6 @@
-<img class="document-viewer" ng-src="{{selectedDocumentImage}}"></img>
+<h1>{{pokemon.pokemon.name}}</h1>
+<img class="document-viewer" ng-src="{{'http://pokeapi.co' + pokemon.image}}"></img>
+
+<pre>
+  {{pokemon | json}}
+</pre>

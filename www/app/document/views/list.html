@@ -9,12 +9,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="document in documents">
-        <th scope="row">{{document.id}}</th>
-        <td>{{document.name}}</td>
+      <tr ng-repeat="pokemon in pokemons">
+        <th scope="row">{{pokemon.name}}</th>
+        <td>{{pokemon.name}}</td>
         <td>
           <div class="btn-group" role="group">
-            <a class="btn btn-primary" ui-sref="documents.detail({ documentid: document.id })">Open</a>
+            <a class="btn btn-primary" ui-sref="documents.detail({ documentid: pokemon.resource_uri })">Open</a>
           </div>
         </td>
       </tr>

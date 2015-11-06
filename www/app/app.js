@@ -50,6 +50,57 @@
           }
         })
     })
+    .service('pokemonService', function PokemonService($http, $q) {
+      this.getList = function () {
+        return $http.get("http://pokeapi.co/api/v1/pokedex/1/");
+      }
+      this.getItem = function (id) {
+        return $http.get("http://pokeapi.co/" + unescape(id))
+          .then(function (response) {
+            return response.data;
+          }).then(function (data) {
+            return $http.get("http://pokeapi.co/api/v1/sprite/" + data.pkdx_id + "/");
+          });
+      }
+      this.greet = function (name) {
+        return asyncGreet(name);
+      }
+
+      function asyncGreet(name) {
+        var deferred = $q.defer();
+
+        setTimeout(function () {
+          deferred.notify('About to greet ' + name + '.');
+
+          if (name.indexOf("c") === 0) {
+            deferred.resolve('Hello, ' + name + '!');
+          } else {
+            deferred.reject('Greeting ' + name + ' is not allowed.');
+          }
+        }, 1000);
+
+        return deferred.promise;
+      }
+      this.calculate = function () {
+        var deferred = $q.defer();
+        var promise = deferred.promise;
+
+        promise.then(function () {
+            console.info("Promise is just done!");
+          },
+          function () {
+            console.error("Promise is rejected!");
+          },
+          function () {
+            console.warn("Notification !");
+          });
+
+        //deferred.notify();
+        //deferred.reject();
+        // deferred.resolve();
+        return promise;
+      }
+    })
     .service('backendApiService', function BackendApiService() {
       this.getDocuments = function () {
         return [{
@@ -77,30 +128,29 @@
       }
     })
     .controller("MainController", function ($scope) {
-      console.log("MainController is created");
       $scope.stuff = 'stuff goes here';
     })
-    .controller("DocumentDetailController", function ($scope, $stateParams, backendApiService, backendApiFactory) {
-      console.log("DocumentDetailController is created");
-      var documents = backendApiService.getDocuments().concat(backendApiFactory());
+    .controller("DocumentDetailController", function ($scope, $stateParams, pokemonService) {
       var id = $stateParams["documentid"];
-      $scope.selectedDocumentImage = "";
+      pokemonService.getItem(id)
+        .then(function (response) {
+          $scope.pokemon = response.data;
 
-      for (var i = 0; i < documents.length; i++) {
-        if (documents[i].id === id) {
-          $scope.selectedDocumentImage = documents[i].image;
-        }
-      }
+          var promise = pokemonService.greet(response.data.pokemon.name);
+          promise.then(function (greeting) {
+            console.info('Success: ' + greeting);
+          }, function (reason) {
+            console.error('Failed: ' + reason);
+          }, function (update) {
+            console.warn('Got notification: ' + update);
+          });
 
+        })
     })
-    .controller("DocumentController", function ($scope, $state, backendApiService, backendApiFactory) {
-      console.log("DocumentController is created");
-      $scope.documents = backendApiService.getDocuments().concat(backendApiFactory());
-
-      $scope.openDocument = function (documentid) {
-        $state.go('documents.show', {
-          id: documentid
+    .controller("DocumentController", function ($scope, $state, $q, pokemonService) {
+      pokemonService.getList()
+        .then(function (response) {
+          $scope.pokemons = response.data.pokemon;
         });
-      };
     });
 })();
